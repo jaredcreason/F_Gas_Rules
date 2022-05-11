@@ -60,28 +60,29 @@ download_file = function(url,file_name,dir=".",check_file=NA,tolower=F) {
 # directory to store the nata data
 nata_dir = "data\\nata_data"
 
-# 2014 nata file containing national cancer risks by toxic
-nata_file = "nata2014v2_national_cancerrisk_by_tract_poll.xlsx"
+# 2014(2017) nata file containing national cancer risks by toxic
+#nata_file = "nata2014v2_national_cancerrisk_by_tract_poll.xlsx"
+nata_file = "national_cancerrisk_by_tract_poll.xlsx"
+
 
 # # download the nata data if it doesn't already exist
 # download_file("https://www.epa.gov/sites/production/files/2018-08/",
-#               nata_file,
-#               dir=nata_dir)
-##load the nata data
-nata_data = read_excel(file.path(nata_dir,nata_file)) %>%
-  rename(total_risk='Total Cancer Risk (per million)') 
+download_file("https://www.epa.gov/system/files/other-files/2022-03/",
+               nata_file,
+               dir=nata_dir)
 
 
 # # Respiratory 
-nata_file_resp = "nata2014v2_national_resphi_by_tract_poll.xlsx"
+#nata_file_resp = "nata2014v2_national_resphi_by_tract_poll.xlsx"
+nata_file_resp =  "national_resphi_by_tract_poll.xlsx"
 
-# download_file("https://www.epa.gov/sites/production/files/2018-08/",
-#               nata_file_resp,
-#               dir=nata_dir)
+ download_file("https://www.epa.gov/sites/production/files/2022-03/",
+               nata_file_resp,
+               dir=nata_dir)
 
 # load the nata data
 nata_data = read_excel(file.path(nata_dir,nata_file)) %>%
-  rename(total_risk='Total Cancer Risk (per million)')
+  rename(total_risk='Total Risk\r\n (in a million)')
 
 nata_data_resp = read_excel(file.path(nata_dir,nata_file_resp)) %>%
   rename(total_risk_resp='Total Respiratory (hazard quotient)') %>%
