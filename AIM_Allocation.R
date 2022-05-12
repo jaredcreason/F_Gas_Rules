@@ -135,13 +135,13 @@ urban_tracts <- readRDS("data/urban_tracts.rds")
 shp_rural <- shp %>% mutate(rural = fifelse(Tract %in% urban_tracts$Tract,0,1))
 
 # identify rural and urban census blocks
-sq_miles_1 <- shp %>% mutate(sq_miles = units::set_units(st_area(shp),"mi^2")) %>%
+sq_miles <- shp %>% mutate(sq_miles = units::set_units(st_area(shp),"mi^2")) %>%
   select(GEOID,sq_miles)
 
 units(sq_miles$sq_miles) <- NULL
 
 # prepare for merge with data
-sq_miles <- sq_miles_1 %>% st_set_geometry(NULL) %>% as.data.table() %>% setkey('GEOID')
+sq_miles %<>% st_set_geometry(NULL) %>% as.data.table() %>% setkey('GEOID')
 
 # draw a buffer around the facilities
 # buffer_dist is in miles so we need to multiply by 1609.34 meters/mile
