@@ -94,6 +94,7 @@ fac_map <- plot_usmap(include=c(.northeast_region,.south_region,.north_central_r
 
 fac_map
 
+
 ggsave("output/Allocation Rule/allocation_rule_facilities_map.png", fac_map, width = 10, height = 6)
 
 ####################################################

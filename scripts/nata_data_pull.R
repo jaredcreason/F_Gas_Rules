@@ -76,7 +76,7 @@ download_file("https://www.epa.gov/system/files/other-files/2022-03/",
 #nata_file_resp = "nata2014v2_national_resphi_by_tract_poll.xlsx"
 nata_file_resp =  "national_resphi_by_tract_poll.xlsx"
 
- download_file("https://www.epa.gov/sites/production/files/2022-03/",
+download_file("https://www.epa.gov/sites/production/files/2022-03/",
                nata_file_resp,
                dir=nata_dir)
 
