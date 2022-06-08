@@ -14,5 +14,4 @@ tri_data <- read_csv("data/tri_data/tri_2020_us.csv") %>%
          `62. 6.1 - POTW - TRNS RLSE`,`63. 6.1 - POTW - TRNS TRT`,`64. POTW - TOTAL TRANSFERS`,
          `84. OFF-SITE RELEASE TOTAL`,`90. OFF-SITE RECYCLED TOTAL`,`93. OFF-SITE ENERGY RECOVERY T`,
          `100. OFF-SITE TREATED TOTAL`,`101. 6.2 - UNCLASSIFIED`,`102. 6.2 - TOTAL TRANSFER`,
-         `103. TOTAL RELEASES`
-         )
+         `103. TOTAL RELEASES`)
