@@ -28,7 +28,7 @@ urban_areas <- urban_areas()
 #########################   Production facility data
 ####################################################
 
-facilities <- read_excel("data/hfc_facilities-4-8-22_w_additions V2.xlsx") %>%
+facilities <- read_excel("data/hfc_facilities-4-8-22_w_additions V2_frsID.xlsx") %>%
   select(Longitude,Latitude,everything())
 
 facilities_lat_lon <- facilities %>% 
