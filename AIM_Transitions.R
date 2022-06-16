@@ -28,8 +28,9 @@ urban_areas <- urban_areas()
 #########################   Production facility data
 ####################################################
 
-facilities <- read_excel("data/hfc_facilities-4-8-22_w_additions V2_frsID.xlsx") %>%
-  select(Longitude,Latitude,everything())
+facilities <- read_excel("data/hfc_facilities-4-8-22_w_additions V2_frsID_updatedlatlon.xlsx") %>%
+  select(Longitude,Latitude,everything()) %>%
+  rename(GHG_co2e = `2020  GHG`)
 
 facilities_lat_lon <- facilities %>% 
   select(Longitude,Latitude,Label) %>%
