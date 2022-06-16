@@ -97,12 +97,19 @@ buffer_10mi = st_intersection(communities_10mi,tri_facilities) %>%
   st_set_geometry(NULL) %>% 
   as.data.frame()
 
-nearby_tri_merged <- merge(buffer,buffer_3mi) %>% 
-  merge(.,buffer_5mi) %>% 
-  merge(.,buffer_10mi) %>%
-  merge(.,facilities_map)
+nearby_tri_join <- facilities_map %>%
+  left_join(buffer, by = c("facility_id", "FACILITY.NAME")) %>%
+  left_join(buffer_3mi, by = c("facility_id", "FACILITY.NAME")) %>%
+  left_join(buffer_5mi, by = c("facility_id", "FACILITY.NAME")) %>%
+  left_join(buffer_10mi, by = c("facility_id", "FACILITY.NAME"))
 
-nearby_tri_table <- nearby_tri_merged %>%
+# Merge is dropping facilities that dont have TRI w/in proximity for all 4 values (1,3,5,10 mi)
+# nearby_tri_merged <- merge(buffer,buffer_3mi) %>% 
+#   merge(.,buffer_5mi) %>% 
+#   merge(.,buffer_10mi) %>%
+#   merge(.,facilities_map)
+
+nearby_tri_table <- nearby_tri_join %>%
   mutate(Location = paste(`CITY NAME`, STATE, sep = ", ")) %>%
   rename(Facility = FACILITY.NAME,
          `Neighboring TRI Facilities within a 1-Mile Radius` = nearby_tri_1mi,
@@ -123,7 +130,7 @@ write.xlsx(nearby_tri_table,"output/Allocation Rule/tri_facilities/allocation_ne
 #########################   Plot Production facility
 ####################################################
 
-nearby_tri <- nearby_tri_merged %>% 
+nearby_tri <- nearby_tri_join %>% 
   relocate(Longitude,Latitude) %>% 
   rename(lon = Longitude,
          lat = Latitude)
